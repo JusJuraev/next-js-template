@@ -1,5 +1,5 @@
 import React from 'react'
-import NextLink from 'next/link'
+import { Link as I18NLink } from 'components/I18N'
 import styled from 'styled-components'
 
 const StyledLink = styled('a')`
@@ -12,11 +12,11 @@ const Link = props => {
   const { href, as, children, ...restProps } = props
 
   return (
-    <NextLink href={href} as={as}>
+    <I18NLink href={href} as={as}>
       <StyledLink href={href} {...restProps}>
         {children}
       </StyledLink>
-    </NextLink>
+    </I18NLink>
   )
 }
 

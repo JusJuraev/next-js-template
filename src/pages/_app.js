@@ -2,6 +2,7 @@ import React from 'react'
 import App from 'next/app'
 import Router from 'next/router'
 import { ThemeProvider } from 'styled-components'
+import { appWithTranslation } from 'hocs/withTranslation'
 import NormalizedStyles from 'components/NormalizedStyles'
 import GlobalStyles from 'components/GlobalStyles'
 
@@ -11,7 +12,7 @@ const theme = {
   }
 }
 
-export default class MyApp extends App {
+class MyApp extends App {
   state = { pageLoading: true }
 
   componentDidMount () {
@@ -40,3 +41,5 @@ export default class MyApp extends App {
     )
   }
 }
+
+export default appWithTranslation(MyApp)
