@@ -14,7 +14,7 @@ const Navigation = styled('div')`
   }
 `
 
-export default () => {
+export default function Header () {
   return (
     <Navigation>
       <Link href={'/'}>Home</Link>

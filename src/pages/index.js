@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { withTranslation } from 'hocs/withTranslation'
+import { useRouter } from 'next/router'
 import Layout from 'components/Layout'
-import { Trans } from 'components/I18N'
+import Trans from 'components/Trans'
 
 const languages = [
   { id: 'ru', name: 'Русский' },
@@ -11,20 +11,28 @@ const languages = [
 ]
 
 const Language = styled('div')`
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.isActive ? '#00408c' : props.theme.colors.primary};
   color: white;
   cursor: pointer;
   padding: 5px;
 `
 
 const Home = props => {
-  const { t, i18n } = props
+  const router = useRouter()
+  const { asPath, locale, pathname } = router
+
+  const onChangeLocale = locale => {
+    router.replace(pathname, asPath, { locale })
+  }
+
   return (
     <Layout>
-      <Trans>test</Trans>
+      <div>
+        <Trans>test_locale</Trans>
+      </div>
       {languages.map((item, index) => {
         return (
-          <Language key={index} onClick={() => i18n.changeLanguage(item.id)}>
+          <Language key={index} isActive={item.id === locale} onClick={() => onChangeLocale(item.id)}>
             {item.name}
           </Language>
         )
@@ -34,7 +42,7 @@ const Home = props => {
 }
 
 Home.getInitialProps = async () => ({
-  namespacesRequired: ['common']
+
 })
 
-export default withTranslation()(Home)
+export default Home

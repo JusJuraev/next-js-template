@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link as I18NLink } from 'components/I18N'
+import PropTypes from 'prop-types'
+import NextLink from 'next/link'
 import styled from 'styled-components'
 
 const StyledLink = styled('a')`
@@ -8,16 +9,23 @@ const StyledLink = styled('a')`
   text-decoration: none;
 `
 
-const Link = props => {
-  const { href, as, children, ...restProps } = props
+function Link (props) {
+  const { href, as, children, locale, ...restProps } = props
 
   return (
-    <I18NLink href={href} as={as}>
+    <NextLink href={href} as={as} locale={locale}>
       <StyledLink href={href} {...restProps}>
         {children}
       </StyledLink>
-    </I18NLink>
+    </NextLink>
   )
+}
+
+Link.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  as: PropTypes.string,
+  locale: PropTypes.string
 }
 
 export default Link

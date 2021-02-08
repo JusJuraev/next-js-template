@@ -20,5 +20,10 @@ module.exports = withBundleAnalyzer({
     config.resolve.modules.push(path.resolve('./src'))
 
     return config
+  },
+
+  i18n: {
+    locales: ['ru', 'uz', 'en'],
+    defaultLocale: 'ru',
   }
 })
